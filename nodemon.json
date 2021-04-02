@@ -1,0 +1,7 @@
+{
+  "env": {
+    "PORT": 3400,
+    "SOCKET_URL": "ws://localhost:6010/ws",
+    "NOTIFY_URL": "http://localhost:5100/v1/transaction/notify-figchain"
+  }
+}
