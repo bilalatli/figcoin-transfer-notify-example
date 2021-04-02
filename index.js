@@ -42,13 +42,29 @@ ws.on("message", (msg) => {
 });
 
 const msgChecker = async (transaction) => {
+  const { hash } = transaction;
+  let nonce = Math.floor(Math.random() * 1000000);
+
   if (transaction.data.length < 2) {
     console.log("There is no transaction in the block.");
-  } else {
-    const { hash } = transaction;
-    const { receiver, sender, id, amount } = transaction.data[1];
 
-    let nonce = Math.floor(Math.random() * 1000000);
+    const response = await axios.post(`${NOTIFY_URL}`, {
+      txId: null,
+      receiver: null,
+      sender: null,
+      hash,
+      amount: 1,
+      nonce,
+    });
+
+    if (response.data.status === true) {
+      console.log(response.data.message);
+    }
+    if (response.data.status === false) {
+      console.log(response.data.message);
+    }
+  } else {
+    const { receiver, sender, id, amount } = transaction.data[1];
 
     const response = await axios.post(`${NOTIFY_URL}`, {
       txId: id,
