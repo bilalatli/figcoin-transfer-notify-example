@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  figcoin-notifier:
+    image: figcoin_notifier:latest
+    container_name: fitcoin_notifier
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      PORT: 3502
+      SOCKET_URL: "wss://node.financialintelligencecoin.com/ws"
+      NOTIFY_URL: "http://localhost:5100/v1/transaction/notify-figchain"
+    ports:
+      - 127.0.0.1:3500:3500
+    expose:
+      - 3500
