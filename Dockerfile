@@ -13,4 +13,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["pm2-runtime", "index.js"]
+CMD ["pm2-runtime", "index.js", "--restart-delay=3000"]
